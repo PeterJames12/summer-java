@@ -5,10 +5,10 @@ package ourTaskWithInterface;
  */
 public class AvdReplacer {
 
-    final IReader iReader;
-    final IPrinter iPrinter;
+    final private IReader iReader;
+    final private IPrinter iPrinter;
 
-    public AvdReplacer(IReader iReader, IPrinter iPrinter) {
+    private AvdReplacer(IReader iReader, IPrinter iPrinter) {
         this.iReader = iReader;
         this.iPrinter = iPrinter;
     }
@@ -20,7 +20,7 @@ public class AvdReplacer {
     }
 
     public static void main(String[] args) {
-        IReader reader = new Reader("i wanna beer");
+        IReader reader = new Reader("i hate beer");
         IPrinter printer = new Printer();
         IPrinter advanceConsolePrinter = new AdvanceConsolePrinter();
         AvdReplacer avdReplacer = new AvdReplacer(reader, printer);
