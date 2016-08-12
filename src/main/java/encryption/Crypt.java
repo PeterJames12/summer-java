@@ -67,8 +67,6 @@ public class Crypt {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
-        // byte[] decodedStr = Base64.decode(key, Base64.DEFAULT);
-
         return cipher.doFinal(b1);
     }
 }
