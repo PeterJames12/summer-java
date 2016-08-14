@@ -1,5 +1,6 @@
 package encryption;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class Main {
         new Main().start();
     }
 
-    private void start() throws Exception {
+    private void start() {
 
         hello();
         selectChoice();
@@ -35,21 +36,39 @@ public class Main {
         System.out.println(4 + " " + "exit");
     }
 
-    private void selectChoice() throws Exception {
+    private void selectChoice() {
 
         int choice = scanner.nextInt();
 
         switch (choice) {
             case 1:
-                byte[] linux = encrypt(message());
+                byte[] linux = new byte[0];
+                try {
+                    linux = encrypt(message());
+                } catch (Exception e) {
+                    System.out.println("something went wrong try again");
+                    start();
+                }
                 String arch = Base64.getEncoder().encodeToString(linux);
                 System.out.println("Take ur encrypt message");
                 System.out.println(arch);
                 start();
                 break;
             case 2:
-                byte[] decryptArch = decrypt(enterCrypt());
-                String dec = new String(decryptArch, "UTF-8");
+                byte[] decryptArch = new byte[0];
+                try {
+                    decryptArch = decrypt(enterCrypt());
+                } catch (Exception e) {
+                    System.out.println("something went wrong try again");
+                    start();
+                }
+                String dec = null;
+                try {
+                    dec = new String(decryptArch, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    System.out.println("something went wrong try again");
+                    start();
+                }
                 System.out.println("Take ur decrypt message");
                 System.out.println(dec);
                 start();
